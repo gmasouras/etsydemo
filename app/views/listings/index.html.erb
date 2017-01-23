@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listings</h1>
 
 <div class="row">
@@ -9,7 +7,7 @@
         <div class="thumbnail">
 
             <div class="caption center">
-              <%= image_tag listing.image %>
+              <%= image_tag listing.image.url(:medium) %>
               <h3><%= listing.name %></h3>
               <p><%= listing.description %></p>
                 <%= link_to 'Show', listing, class: "btn btn-link" %>

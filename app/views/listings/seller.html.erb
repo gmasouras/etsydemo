@@ -1,25 +1,35 @@
-<h1><%= "#{current_user.name.capitalize} Listings" %></h1>
+<h1 class="page_title"><%= "#{current_user.name.capitalize} Listings" %></h1>
 
-<div class="row">
+<table class="table table-bordered table-striped">
+  <tr>
+    <th class="center">Image</th>
+    <th class="center">Name</th>
+    <th class="center">Description</th>
+    <th class="center">Price</th>
+    <th class="center">Action</th>
+  </tr>
   <% @listings.each do |listing| %>
-    <div class="col-md-4">
-      <div class="row">
-        <div class="thumbnail">
-            <div class="caption center">
-              <%= link_to image_tag(listing.image.url(:medium)), listing %>
-              <h3><%= listing.name %></h3>
-              <p><%= listing.price %></p>
-              <p><%= "Sold by #{listing.user.name}" %></p>
-              <% if current_user == listing.user %>
-                <%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-link" %>
-                <%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
-              <% end %>
-            </div>
-          </div>
+    <tr>
+      <td class="center"><%= image_tag listing.image.url(:thumb) %></td>
+      <td><%= listing.name %></td>
+      <td><%= listing.description %></td>
+      <td class="center"><%= listing.price %></td>
+      <td class="center">
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Action
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Show', listing, class: "btn btn-link" %></li>
+            <li><%= link_to 'Edit', edit_listing_path(listing), class: "btn btn-link" %></li>
+            <li><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></li>
+          </ul>
         </div>
-    </div>
+      </td>
+    </tr>
   <% end %>
-</div>
+</table>
 
 <br>
 <% if user_signed_in? %>

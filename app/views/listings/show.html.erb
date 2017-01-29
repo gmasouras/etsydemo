@@ -10,6 +10,7 @@
     <h3><%= @listing.name %></h3>
     <p><%= @listing.price %></p>
     <p><%= @listing.description %></p>
+    <p><%= link_to 'Buy it now', new_listing_order_path(@listing), class: "btn btn-primary" %></p>
   </div>
 </div>
 
